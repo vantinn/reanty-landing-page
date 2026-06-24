@@ -2,6 +2,8 @@
 
 A responsive real estate landing page built with vanilla HTML, CSS, and JavaScript. No frameworks or build tools required.
 
+**Live demo:** [reanty-landing-page.vercel.app](https://reanty-landing-page.vercel.app)
+
 ## Overview
 
 Reanty is a static landing page for a real estate brand, covering property listings, services, testimonials, blog posts, and a contact form. The layout is mobile-first and adapts across four breakpoints.
