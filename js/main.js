@@ -3,6 +3,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const hamburger = document.querySelector('.nav-hamburger');
   const navLinks  = document.querySelector('.nav-links');
 
+  function closeMenu() {
+    hamburger.classList.remove('is-open');
+    hamburger.setAttribute('aria-expanded', 'false');
+    navLinks.classList.remove('is-open');
+    document.body.style.overflow = '';
+  }
+
   if (hamburger && navLinks) {
     hamburger.addEventListener('click', () => {
       const isOpen = hamburger.classList.contains('is-open');
@@ -13,12 +20,24 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     document.querySelectorAll('.nav-link, .nav-login, .btn--signup').forEach(el => {
-      el.addEventListener('click', () => {
-        hamburger.classList.remove('is-open');
-        hamburger.setAttribute('aria-expanded', 'false');
-        navLinks.classList.remove('is-open');
-        document.body.style.overflow = '';
-      });
+      el.addEventListener('click', closeMenu);
+    });
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && hamburger.classList.contains('is-open')) {
+        closeMenu();
+        hamburger.focus();
+      }
+    });
+
+    document.addEventListener('click', e => {
+      if (
+        hamburger.classList.contains('is-open') &&
+        !navLinks.contains(e.target) &&
+        !hamburger.contains(e.target)
+      ) {
+        closeMenu();
+      }
     });
   }
 
